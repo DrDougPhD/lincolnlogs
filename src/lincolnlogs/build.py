@@ -3,16 +3,17 @@ import logging
 import os
 import pathlib
 
-from lincolnlogs import notebook
-
+from . import notebook
 from . import monkeypatch
 
 default_level = logging.getLevelName(logging.INFO)
 
 
 def it(verbosity: str = default_level) -> logging.Logger:
+    # Grab the root logger
+    logger = logging.getLogger()
+
     level = logging.getLevelName(verbosity)
-    logger = logging.getLogger(__package__)
     logger.setLevel(level)
 
     if len(logger.handlers) > 0:
