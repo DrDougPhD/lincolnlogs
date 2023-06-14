@@ -64,7 +64,10 @@ def debug_logger(logger: logging.Logger, command_line_handler):
                 return record
            
             else:
-                raise
+                # Calling code block likely in a virtual environment
+                record_source_file_relative_path = pathlib.Path(
+                    str(record_path).split(f'site-packages{os.sep}')[-1]
+                )
        
         if record_source_file_relative_path.name == '__init__.py':
             record_source_file_relative_path = record_source_file_relative_path.parent
