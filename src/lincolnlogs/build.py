@@ -1,5 +1,6 @@
 import datetime
 import logging
+from logging.handlers import TimedRotatingFileHandler
 import os
 import pathlib
 
@@ -45,8 +46,12 @@ def debug_logger(logger: logging.Logger, command_line_handler):
     logging_directory = project_root / 'logs'
     logging_directory.mkdir(parents=True, exist_ok=True)
  
-    filename_timestamp = datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
-    file_log_handler = logging.FileHandler(logging_directory / f'{filename_timestamp}.log')
+    # filename_timestamp = datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
+    file_log_handler = TimedRotatingFileHandler(
+        filename=logging_directory / 'debug.log',
+        when='midnight',
+        backupCount=5,
+    )
     file_log_handler.setLevel(logging.DEBUG)
  
     default_record_factory = logging.getLogRecordFactory()
