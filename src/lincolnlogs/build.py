@@ -109,7 +109,6 @@ def debug_logger(logger: logging.Logger, command_line_handler):
                 '%(message)s'
             ),
             datefmt='%Y-%m-%d %H:%M:%S',
-            reset=True,
         )
  
     for handler in (file_log_handler, command_line_handler):
