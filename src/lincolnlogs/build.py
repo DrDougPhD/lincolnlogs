@@ -104,7 +104,7 @@ def debug_logger(logger: logging.Logger, command_line_handler):
         # `colorlog` is not installed, so don't use it
         source_files_funcs_linenos_formatter = logging.Formatter(
             fmt=(
-                '%(asctime)s - s%(levelname)-8s'
+                '%(asctime)s - %(levelname)-8s'
                 ' [ %(relpathname)s::%(funcName)s():%(lineno)s ] '
                 '%(message)s'
             ),

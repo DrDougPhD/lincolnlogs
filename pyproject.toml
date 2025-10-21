@@ -1,3 +1,36 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools >= 77.0.3"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "lincolnlogs"
+dependencies = [
+    "termcolor >= 3, < 4",
+    "colorlog >= 6.9.0, < 7",
+]
+requires-python = ">= 3.7"
+dynamic = [
+    "version",
+    "readme",
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "lincolnlogs.VERSION"}
+readme = {file = ["README.md"]}
+
+[tool.setuptools.packages.find]
+where = [
+    "src",
+    "tests",
+]
+namespaces = true
+exclude = [
+    "data*",
+    "references*",
+    "__pycache__*",
+]
+
+[tool.setuptools.package-data]
+"*" = [
+    "*.md",
+]
